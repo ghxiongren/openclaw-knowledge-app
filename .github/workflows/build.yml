@@ -24,6 +24,15 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
+      - name: Get npm cache directory
+        id: npm-cache-dir
+        shell: bash
+        run: |
+          echo "dir=$(npm config get cache)" >> $GITHUB_OUTPUT
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v2
+
       - name: Install dependencies
         run: |
           npm install
@@ -33,11 +42,9 @@ jobs:
         run: |
           cordova platform add android@12.0.0
 
-      - name: Build APK (release)
+      - name: Build APK (debug)
         run: |
-          cordova build android --release
-        env:
-          JAVA_HOME: ${{ env.JAVA_HOME_17 }}
+          cordova build android --debug
 
       - name: Find APK
         run: |
@@ -47,23 +54,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: OpenClaw-Knowledge-APK
-          path: platforms/android/app/build/outputs/apk/release/*.apk
-
-      - name: Create Release
-        if: github.event_name == 'workflow_dispatch'
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: v1.0.0
-          name: OpenClaw 知识手册 v1.0.0
-          body: |
-            ## 📱 OpenClaw 知识手册 APK
-
-            完整的 OpenClaw AI 助手框架知识总结，可离线使用。
-
-            ### 安装方法
-            1. 下载 APK 文件
-            2. 在手机上启用「未知来源」应用安装
-            3. 点击 APK 文件进行安装
-          files: platforms/android/app/build/outputs/apk/release/*.apk
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          path: platforms/android/app/build/outputs/apk/debug/*.apk
