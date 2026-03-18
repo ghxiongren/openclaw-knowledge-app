@@ -1,0 +1,25 @@
+{
+  "name": "openclaw-knowledge-app",
+  "displayName": "OpenClaw 知识手册",
+  "version": "1.0.0",
+  "description": "OpenClaw AI 助手框架知识总结",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ecosystem:cordova"
+  ],
+  "author": "OpenClaw Team",
+  "license": "MIT",
+  "devDependencies": {
+    "cordova": "^11.0.0",
+    "cordova-android": "^12.0.0"
+  },
+  "cordova": {
+    "platforms": [
+      "android"
+    ],
+    "plugins": {}
+  }
+}

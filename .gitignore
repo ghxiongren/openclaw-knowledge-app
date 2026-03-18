@@ -1,0 +1,25 @@
+# 依赖
+node_modules/
+package-lock.json
+
+# Cordova
+platforms/
+plugins/
+hooks/
+
+# 构建输出
+output/
+*.apk
+*.aab
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# macOS
+.DS_Store
+
+# 临时文件
+*.log
+*.tmp
